@@ -47,3 +47,4 @@ pip install mysql-connector-python
 ```
 
 Desarrollado con visión por [@t-regexr](https://github.com/t-regexr)
+_A mi madre, visionaria en otra dimensión, que supo reconocer en mí un giro sin tornillo y creyó antes que yo._
