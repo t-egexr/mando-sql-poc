@@ -21,6 +21,8 @@ INSERT INTO dosage (medication_id, amount, date) VALUES
 (5, 3, '2025-04-04'),
 (5, 3, '2025-04-05');
 ```
+![Made with ❤️ and Python](https://img.shields.io/badge/built%20with-Python-blue?style=flat-square)
+👉 Esta sintaxis puede simplificar cientos de líneas en sistemas de salud, educación o IoT, donde los datos periódicos son la norma.
 
 ✅ ¿Por qué?
 
