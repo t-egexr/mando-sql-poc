@@ -46,7 +46,13 @@ pip install mysql-connector-python
 - Sintaxis más flexible
 - CLI y web UI
 - Integración con VS Code / DataGrip / DBeaver
+🗣️ Presentado en **HΔcKΛΛΣ7ΨΠg v.Φ.I**, julio 2025
 ```
 
 Desarrollado con visión por [@t-regexr](https://github.com/t-regexr)
 _A mi madre, visionaria en otra dimensión, que supo reconocer en mí un giro sin tornillo y creyó antes que yo._
+
+---
+
+[![Presentado en HackMeeting v.Φ.I](https://img.shields.io/badge/presentado%20en-hackmeeting%20v.Φ.I-blueviolet)](https://hackmd.io/@t-regexr#H/HΔcKΛΛΣ7ΨΠg-vΦI)
+
