@@ -39,6 +39,13 @@ pip install mysql-connector-python
 3. Ajusta la conexión a tu base de datos en mando_insert_expander.py
 4. Ejecuta el script y ¡listo!
 
+## 🧰 Uso por línea de comandos (CLI)
+
+Además del uso básico en Python, este proyecto incluye un script CLI para expandir y ejecutar consultas SQL con rangos de fechas.
+
+Consulta la [Guía CLI](docs/cli-usage.md) para más detalles sobre argumentos, ejecución y configuración de variables de entorno.
+
+
 📚 ¿Qué sigue?
 
 - Soporte para saltos: EVERY 2 DAYS
