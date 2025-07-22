@@ -1,3 +1,7 @@
+# mando_insert_expander.py
+# MIT License (c) 2025 @t-regexr
+# https://github.com/t-regexr/mando-sql-poc
+
 import re
 import argparse
 from datetime import datetime, timedelta
