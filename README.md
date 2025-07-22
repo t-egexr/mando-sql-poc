@@ -48,10 +48,11 @@ Consulta la [Guía CLI](docs/cli-usage.md) para más detalles sobre argumentos, 
 
 📚 ¿Qué sigue?
 
-- Soporte para saltos: EVERY 2 DAYS
-- Sintaxis más flexible
-- CLI y web UI
-- Integración con VS Code / DataGrip / DBeaver
+- [ ] Soporte para saltos: EVERY 2 DAYS
+- [x] Sintaxis más flexible
+- [x] CLI lista y funcional
+- [ ] Web UI (en desarrollo)
+- [ ] Integración con VS Code / DataGrip / DBeaver
 
 [![Presentado en HackMeeting v.Φ.I](https://img.shields.io/badge/presentado%20en-hackmeeting%20v.Φ.I-blueviolet)](https://hackmd.io/@t-regexr#H/HΔcKΛΛΣ7ΨΠg-vΦI)
 
