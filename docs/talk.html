@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>HΔcKΛΛΣ7ΨΠg v.Φ.I – Una microhistoria de rebeldía sintáctica</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Courier New', monospace;
+      background: #0d0d0d;
+      color: #e6e6e6;
+      overflow: hidden;
+    }
+  
+    .slide {
+  display: block;           /* siempre visibles para transición */
+  opacity: 0;               /* invisibles por defecto */
+  pointer-events: none;     /* no se puede interactuar */
+  padding: 20px;
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  position: absolute;       /* apiladas */
+  top: 0;
+  left: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.active {
+  opacity: 1;               /* visible */
+  pointer-events: auto;     /* interactuable */
+  position: relative;       /* ocupa espacio */
+     h1, h2, h3 { color: #0ff; }
+    p, blockquote, pre { color: #ccc; }
+    blockquote {
+      margin: 20px 0;
+      padding-left: 20px;
+      border-left: 4px solid #0ff;
+      color: #aaffee;
+    }
+}
+    pre {
+      background: #1a1a1a;
+      padding: 16px;
+      overflow-x: auto;
+      border-radius: 6px;
+    }
+    footer {
+      position: absolute;
+      bottom: 20px;
+      right: 40px;
+      font-size: 0.9em;
+      color: #666;
+    }
+    .cyber {
+      text-shadow: 0 0 8px #0ff, 0 0 16px #0ff;
+    }
+    .neon-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      color: #0ff;
+      border: 2px solid #0ff;
+      text-decoration: none;
+      margin-top: 20px;
+      border-radius: 4px;
+      transition: 0.3s;
+    }
+    .neon-btn:hover {
+      background: rgba(0,255,255,0.1);
+      box-shadow: 0 0 12px #0ff;
+    }
+  </style>
+</head>
+<body>
+
+<div class="slide active">
+  <h1 class="cyber">🧠 HΔcKΛΛΣ7ΨΠg v.Φ.I</h1>
+  <h2>“Del papel a SQL: una microhistoria de rebeldía sintáctica”</h2>
+  <p>por <strong>@t‑regexr</strong></p>
+</div>
+
+<div class="slide">
+  <h2>🎯 ¿Qué es esto?</h2>
+  <p>Un día estaba cansado de anotar a mano cuándo tomaba mis medicamentos, y me dije:</p>
+  <blockquote>"¿No debería poder decirle a SQL algo tan simple como: inserta estos datos desde tal día hasta tal otro?"</blockquote>
+  <p>La respuesta fue:<br>
+    <blockquote><code>ERROR: syntax not supported</code></blockquote>
+    <br>Entonces lo hice igual.</p>
+</div>
+
+<div class="slide">
+  <h2>💡 ¿Y qué hice?</h2>
+  <pre>
+INSERT INTO dosage (medication_id, amount, date)
+VALUES (5, 3, FROM '2025-04-01' TO '2025-04-05');
+  </pre>
+  <p>se convierte en:</p>
+  <pre>
+INSERT INTO dosage (medication_id, amount, date) VALUES
+(5, 3, '2025-04-01'),
+...
+(5, 3, '2025-04-05');
+  </pre>
+</div>
+
+<div class="slide">
+  <h2>🛠️ ¿Cómo lo armé?</h2>
+  <ul>
+    <li>Python + Regex + MySQL Connector</li>
+    <li>ChatGPT como copiloto de código</li>
+    <li>Todo el código está en GitHub</li>
+  </ul>
+  <a class="neon-btn" href="https://github.com/t-regexr/mando-sql-poc" target="_blank">Ver repo</a>
+</div>
+
+<div class="slide">
+  <h2>🔍 ¿Por qué importa?</h2>
+  <p>Centros de salud, IoT, educación, etc., insertan datos diarios todo el tiempo.</p>
+  <p>Hacerlo <em>a mano</em> o con scripts externos es un <strong>castigo</strong>.</p>
+  <blockquote>¿Y si el lenguaje fuera más humano? ¿Más natural para quienes no son devs expertos?</blockquote>
+</div>
+
+<div class="slide">
+  <h2>✉️ ¿Y qué pasó?</h2>
+  <p>
+    Le mandé la idea al foro <code>pgsql-hackers@postgresql.org</code>,
+    donde escriben quienes construyen el motor de PostgreSQL.
+    Nunca pensé que responderían…
+  </p>
+  <p>Pero me contestó <strong>Álvaro Herrera</strong>, del equipo core (¡y chileno, como yo!).</p>
+  <p><em>Su respuesta fue algo como:</em></p>
+  <blockquote>
+    “Eso ya se puede hacer con <code>generate_series()</code>…”
+  </blockquote>
+  <p><em>Y mi respuesta fue:</em></p>
+  <blockquote><strong>No es solo código.</strong><br>Es sintaxis con empatía.</blockquote>
+  <p>
+    Fue un momento especial: una idea pequeña llegó hasta quienes construyen el corazón de una base de datos mundial.
+  </p>
+</div>
+
+ <!-- <p>Fue un momento especial. Porque algo que partió como una idea simple —hacer que SQL suene más como una persona— terminó generando conversación con quienes escriben el motor de la base de datos.</p>
+-->
+
+
+<div class="slide">
+  <h2>🧪 Resultado</h2>
+  <ul>
+    <li>✅ PoC funcional</li>
+    <li>✅ CLI usable</li>
+    <li>🔲 Propuesta pública</li>
+    <li>🔲 Comunidad interesada y feedback en curso</li>
+  </ul>
+</div>
+
+<div class="slide">
+  <blockquote>“Porque el hacking también es imaginar una sintaxis más amable para una realidad más vivible.”</blockquote>
+  <p class="cyber">— @t‑regexr</p>
+</div>
+
+<div class="slide">
+  <h2>Gracias 🙏</h2>
+  <p>Preguntas, ideas o réplicas bienvenidas.</p>
+  <p>Contacto: <strong>@t‑regexr</strong></p>
+  <p><a class="neon-btn" href="https://github.com/t-regexr/mando-sql-poc" target="_blank">Ver repo</a></p>
+</div>
+
+<footer>HΔcKΛΛΣ7ΨΠg v.Φ.I • Lightning Talk</footer>
+
+<script>
+ let idx = 0;
+const slides = document.querySelectorAll('.slide');
+let animating = false;
+
+document.body.addEventListener('keydown', e => {
+  if (animating) return;
+
+  if (e.key === 'ArrowRight' && idx < slides.length - 1) {
+    animating = true;
+    slides[idx].classList.remove('active');
+    slides[++idx].classList.add('active');
+    setTimeout(() => animating = false, 500); // dura igual que la transición CSS
+  }
+
+  if (e.key === 'ArrowLeft' && idx > 0) {
+    animating = true;
+    slides[idx].classList.remove('active');
+    slides[--idx].classList.add('active');
+    setTimeout(() => animating = false, 500);
+  }
+});
+
+</script>
+</body>
+</html>
