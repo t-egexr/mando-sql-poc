@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>HΔcKΛΛΣ7ΨΠg v.Φ.I – Una microhistoria de rebeldía sintáctica</title>
+  <title>HΔcKΛΛΣ7ΨΠg v.Φ.I – Rebeldía sintáctica</title>
   <style>
     body {
       margin: 0;
@@ -11,40 +11,44 @@
       color: #e6e6e6;
       overflow: hidden;
     }
-  
-    .slide {
-  display: block;           /* siempre visibles para transición */
-  opacity: 0;               /* invisibles por defecto */
-  pointer-events: none;     /* no se puede interactuar */
-  padding: 20px;
-  width: 100vw;
-  height: 100vh;
-  box-sizing: border-box;
-  position: absolute;       /* apiladas */
-  top: 0;
-  left: 0;
-  transition: opacity 0.5s ease-in-out;
-}
 
-.active {
-  opacity: 1;               /* visible */
-  pointer-events: auto;     /* interactuable */
-  position: relative;       /* ocupa espacio */
-     h1, h2, h3 { color: #0ff; }
+    .slide {
+      display: block;
+      opacity: 0;
+      pointer-events: none;
+      padding: 20px;
+      width: 100vw;
+      height: 100vh;
+      box-sizing: border-box;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .active {
+      opacity: 1;
+      pointer-events: auto;
+      position: relative;
+    }
+
+    h1, h2, h3 { color: #0ff; }
     p, blockquote, pre { color: #ccc; }
+
     blockquote {
       margin: 20px 0;
       padding-left: 20px;
       border-left: 4px solid #0ff;
       color: #aaffee;
     }
-}
+
     pre {
       background: #1a1a1a;
       padding: 16px;
       overflow-x: auto;
       border-radius: 6px;
     }
+
     footer {
       position: absolute;
       bottom: 20px;
@@ -52,9 +56,11 @@
       font-size: 0.9em;
       color: #666;
     }
+
     .cyber {
       text-shadow: 0 0 8px #0ff, 0 0 16px #0ff;
     }
+
     .neon-btn {
       display: inline-block;
       padding: 10px 20px;
@@ -65,6 +71,7 @@
       border-radius: 4px;
       transition: 0.3s;
     }
+
     .neon-btn:hover {
       background: rgba(0,255,255,0.1);
       box-shadow: 0 0 12px #0ff;
@@ -139,10 +146,6 @@ INSERT INTO dosage (medication_id, amount, date) VALUES
   </p>
 </div>
 
- <!-- <p>Fue un momento especial. Porque algo que partió como una idea simple —hacer que SQL suene más como una persona— terminó generando conversación con quienes escriben el motor de la base de datos.</p>
--->
-
-
 <div class="slide">
   <h2>🧪 Resultado</h2>
   <ul>
@@ -153,9 +156,27 @@ INSERT INTO dosage (medication_id, amount, date) VALUES
   </ul>
 </div>
 
+<!-- 🎉 Si llegaste leyendo hasta acá, la media volá, acá te tiro un bonus -->
+<div class="slide">
+  <h2>🧰 ¿Y si quiero usarlo desde la terminal?</h2>
+  <p>Podés ejecutar una query como esta:</p>
+  <pre>
+INSERT INTO dosage (...) 
+VALUES (5, 3, FROM '2025-04-01' TO '2025-04-05');
+  </pre>
+  <p>Usando el CLI:</p>
+  <pre>
+python mando_insert_expander.py query.sql --execute
+  </pre>
+  <p>Soporta variables de entorno, errores amigables, y expansión sin ejecutar.</p>
+  <p><a class="neon-btn" href="https://github.com/t-regexr/mando-sql-poc/blob/main/docs/usage.md" target="_blank">Ver guía CLI</a></p>
+</div>
+
+<!-- 🌱 Cultura hacker -->
 <div class="slide">
   <blockquote>“Porque el hacking también es imaginar una sintaxis más amable para una realidad más vivible.”</blockquote>
   <p class="cyber">— @t‑regexr</p>
+  <p style="font-size: 0.9em; color: #777;">Versión sintáctica a la chilena 🧉🌶️</p>
 </div>
 
 <div class="slide">
@@ -168,7 +189,7 @@ INSERT INTO dosage (medication_id, amount, date) VALUES
 <footer>HΔcKΛΛΣ7ΨΠg v.Φ.I • Lightning Talk</footer>
 
 <script>
- let idx = 0;
+let idx = 0;
 const slides = document.querySelectorAll('.slide');
 let animating = false;
 
@@ -179,7 +200,7 @@ document.body.addEventListener('keydown', e => {
     animating = true;
     slides[idx].classList.remove('active');
     slides[++idx].classList.add('active');
-    setTimeout(() => animating = false, 500); // dura igual que la transición CSS
+    setTimeout(() => animating = false, 500);
   }
 
   if (e.key === 'ArrowLeft' && idx > 0) {
@@ -189,7 +210,7 @@ document.body.addEventListener('keydown', e => {
     setTimeout(() => animating = false, 500);
   }
 });
-
 </script>
+
 </body>
 </html>
