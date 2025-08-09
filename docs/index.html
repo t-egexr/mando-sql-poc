@@ -153,126 +153,121 @@
     </style>
   </head>
   <body>
-      <section class="slide active">
-        <h1 class="cyber">🧠 HΔcKΛΛΣ7ΨΠg v.Φ.I</h1>
-        <h2>“Del papel a SQL: una microhistoria de rebeldía sintáctica”</h2>
-        <p>por <strong>@t‑regexr</strong></p>
-      </section>
+  <section class="slide active">
+    <h1 class="cyber">🧠 HΔcKΛΛΣ7ΨΠg v.Φ.I</h1>
+    <h2>“Del papel a SQL: una microhistoria de rebeldía sintáctica”</h2>
+    <p>por <strong>@t‑regexr</strong></p>
+  </section>
 
-      <section class="slide">
-        <h2>🎯 ¿Qué es esto?</h2>
-        <p>Un día estaba cansado de anotar a mano cuándo tomaba mis medicamentos, y me dije:</p>
-        <blockquote class="blockQ">"¿No debería poder decirle a SQL algo tan simple como: inserta estos datos desde tal día hasta tal otro?"</blockquote>
-        <p>La respuesta fue:<br>
-          <blockquote><code>ERROR: syntax not supported</code></blockquote>
-          <br>Entonces lo hice igual.
-        </p>
-      </section>
+  <section class="slide">
+    <h2>🎯 ¿Qué es esto?</h2>
+    <p>Un día estaba cansado de anotar a mano cuándo tomaba mis medicamentos, y me dije:</p>
+    <blockquote class="blockQ">"¿No debería poder decirle a SQL algo tan simple como: inserta estos datos desde tal día hasta tal otro?"</blockquote>
+    <p>La respuesta fue:<br><blockquote><code>ERROR: syntax not supported</code></blockquote><br>Entonces lo hice igual.</p>
+  </section>
 
-      <section class="slide">
-        <h2>💡 ¿Y qué hice?</h2>
-        <pre class="blockQT">
-    INSERT INTO dosage (medication_id, amount, date)
-    VALUES (5, 3, FROM '2025-04-01' TO '2025-04-05');
-        </pre>
-        <p>se convierte en:</p>
-        <pre class="blockQT">
-    INSERT INTO dosage (medication_id, amount, date) VALUES
-    (5, 3, '2025-04-01'),
-    ...
-    (5, 3, '2025-04-05');
-        </pre>
-      </section>
+  <section class="slide">
+    <h2>💡 ¿Y qué hice?</h2>
+    <pre class="blockQT">
+INSERT INTO dosage (medication_id, amount, date)
+VALUES (5, 3, FROM '2025-04-01' TO '2025-04-05');
+    </pre>
+    <p>Se convierte automáticamente en:</p>
+    <pre class="blockQT">
+INSERT INTO dosage (medication_id, amount, date) VALUES
+(5, 3, '2025-04-01'),
+(5, 3, '2025-04-02'),
+(5, 3, '2025-04-03'),
+(5, 3, '2025-04-04'),
+(5, 3, '2025-04-05');
+    </pre>
+  </section>
 
-      <section class="slide">
-        <h2>🛠️ ¿Cómo lo armé?</h2>
-        <ul>
-          <li>Python + Regex + MySQL Connector</li>
-          <li>ChatGPT como copiloto de código</li>
-          <li>Todo el código está en GitHub</li>
-        </ul>
-        <a class="neon-btn" href="https://github.com/t-regexr/mando-sql-poc" target="_blank" rel="noopener noreferrer">Ver repo</a>
-      </section>
+  <section class="slide">
+    <h2>🆕 Novedades v2.0</h2>
+    <ul>
+      <li>🧠 Expansión automática de fechas con sintaxis natural</li>
+      <li>📦 Detección de tipos (INT, FLOAT, TEXT, BOOL) en columnas dinámicas</li>
+      <li>🧱 Creación automática de tablas según las columnas del INSERT</li>
+      <li>🛠️ CLI lista para uso real: flags, errores claros, variables de entorno</li>
+    </ul>
+    <p>Ahora puedes escribir esto:</p>
+    <pre class="blockQT">
+INSERT INTO dosage (medication_id, amount, id_user, date)
+VALUES (10, 2.5, 99, FROM '2025-01-01' TO '2025-01-03');
+    </pre>
+    <p>Y todo se adapta: columnas, tipos y registros.</p>
+  </section>
 
-      <section class="slide">
-        <h2>🔍 ¿Por qué importa?</h2>
-        <p>Centros de salud, IoT, educación, etc., insertan datos diarios todo el tiempo.</p>
-        <p>Hacerlo <em>a mano</em> o con scripts externos es un <strong>castigo</strong>.</p>
-        <blockquote>¿Y si el lenguaje fuera más humano? ¿Más natural para quienes no son devs expertos?</blockquote>
-      </section>
+  <section class="slide">
+    <h2>🛠️ ¿Cómo lo armé?</h2>
+    <ul>
+      <li>Python + Regex + MySQL Connector</li>
+      <li>ChatGPT como copiloto de código</li>
+      <li>Código libre en GitHub</li>
+    </ul>
+    <a class="neon-btn" href="https://github.com/t-regexr/mando-sql-poc/releases/tag/v2.0.0" target="_blank">Ver release</a>
+  </section>
 
-      <section class="slide">
-        <h2>✉️ ¿Y qué pasó?</h2>
-        <p class="wrP">
-          Le mandé la idea al foro <code>pgsql-hackers@postgresql.org</code>,
-          donde escriben quienes construyen el motor de PostgreSQL.
-          Nunca pensé que responderían…
-        </p>
-        <p>Pero me contestó <strong>Álvaro Herrera</strong>, del equipo core (¡y chileno, como yo!).</p>
-        <p><em>Su respuesta fue algo como:</em></p>
-        <blockquote>
-          “Eso ya se puede hacer con <code>generate_series()</code>…”
-        </blockquote>
-        <p><em>Y mi respuesta fue:</em></p>
-        <blockquote><strong>No es solo código.</strong><br>Es sintaxis con empatía.</blockquote>
-        <p class="wrP">
-          Fue un momento especial: una idea pequeña llegó hasta quienes construyen el corazón de una base de datos mundial.
-        </p>
-      </section>
+  <section class="slide">
+    <h2>🔍 ¿Por qué importa?</h2>
+    <p>Centros de salud, IoT, educación... insertan datos diarios todo el tiempo.</p>
+    <blockquote>¿Y si el lenguaje fuera más humano? ¿Más natural para quienes no son devs expertos?</blockquote>
+  </section>
 
-      <section class="slide">
-        <h2>🧪 Resultado</h2>
-        <ul>
-          <li>✅ PoC funcional</li>
-          <li>✅ CLI usable</li>
-          <li>🔲 Propuesta pública</li>
-          <li>🔲 Comunidad interesada y feedback en curso</li>
-        </ul>
-      </section>
+  <section class="slide">
+    <h2>✉️ ¿Y qué pasó?</h2>
+    <p class="wrP">Le mandé la idea al foro <code>pgsql-hackers@postgresql.org</code>... y me respondió uno de los core devs.</p>
+    <blockquote>“Eso ya se puede hacer con <code>generate_series()</code>…”</blockquote>
+    <blockquote><strong>No es solo código.</strong><br>Es sintaxis con empatía.</blockquote>
+  </section>
 
-      <section class="slide">
-        <h2>🧰 ¿Y si quiero usarlo desde la terminal?</h2>
-        <p>Puedes ejecutar una query como esta:</p>
-        <pre class="blockQT">
-    INSERT INTO dosage (...) 
-    VALUES (5, 3, FROM '2025-04-01' TO '2025-04-05');
-        </pre>
-        <p>Usando el CLI:</p>
-        <pre class="blockQT py">
-    python mando_insert_expander.py query.sql --execute
-        </pre>
-        <p>Soporta variables de entorno, errores amigables, y expansión sin ejecutar.</p>
-        <p><a class="neon-btn" href="https://github.com/t-regexr/mando-sql-poc/blob/main/docs/usage.md" target="_blank" rel="noopener noreferrer">Ver guía CLI</a></p>
-      </section>
+  <section class="slide">
+    <h2>🧪 Resultado</h2>
+    <ul>
+      <li>✅ PoC funcional</li>
+      <li>✅ CLI lista para producción</li>
+      <li>✅ Soporte para múltiples columnas y tipos</li>
+      <li>🧪 Testeado con +2 millones de filas (95 MB) en segundos</li>
+    </ul>
+  </section>
 
-      <section class="slide">
-        <h2>✨ Inspiración final</h2>
-        <blockquote class="inspiracion">
-          “Incluso un hombre ordinario puede volverse extraordinario… si no deja de avanzar.”
-        </blockquote>
-        <p style="text-align: center; margin-top: 10px; color: #aaa;">— Inspirado en Isaac Netero, Hunter x Hunter</p>
-        <div style="text-align: center; margin-top: 30px;">
-          <img class="netero" src="assets/images/netero.jpg" alt="Isaac Netero" />
-        </div>
-      </section>
+  <section class="slide">
+    <h2>🧰 ¿Y si quiero usarlo desde la terminal?</h2>
+    <p>Ejecuta un archivo `.sql` como este:</p>
+    <pre class="blockQT py">
+python mando_insert_expander.py query.sql --execute
+    </pre>
+    <p>Soporta variables de entorno, errores claros y expansión segura.</p>
+    <a class="neon-btn" href="https://github.com/t-regexr/mando-sql-poc/blob/main/docs/cli-usage.md" target="_blank">Ver guía CLI</a>
+  </section>
 
-      <section class="slide cultura-hacker">
-        <h2>✨ Donde el código toca el alma</h2>
-        <blockquote>
-          “Porque el HΔcKΨΠg también es imaginar una sintaxis más amable para una realidad más vivible.”
-        </blockquote>
-        <p class="cyber">— @t‑regexr</p>
-        <p class="desc">Este código habla en nuestro idioma.<span class="flag-glow">&nbsp;🇨🇱</span></p>
-      </section>
+  <section class="slide">
+    <h2>✨ Inspiración final</h2>
+    <blockquote class="inspiracion">
+      “Incluso un hombre ordinario puede volverse extraordinario… si no deja de avanzar.”
+    </blockquote>
+    <p style="text-align: center; margin-top: 10px; color: #aaa;">— Inspirado en Isaac Netero, Hunter x Hunter</p>
+    <div style="text-align: center; margin-top: 30px;">
+      <img class="netero" src="assets/images/netero.jpg" alt="Isaac Netero" />
+    </div>
+  </section>
 
-      <section class="slide">
-        <h2>Gracias 🙏</h2>
-        <p>Preguntas, ideas o réplicas bienvenidas.</p>
-        <p>Contacto: <strong>@t‑regexr</strong></p>
-        <p><a class="neon-btn" href="https://github.com/t-regexr/mando-sql-poc" target="_blank" rel="noopener noreferrer">Ver repo</a></p>
-      </section>
+  <section class="slide cultura-hacker">
+    <h2>✨ Donde el código toca el alma</h2>
+    <blockquote>“Porque el HΔcKΨΠg también es imaginar una sintaxis más amable para una realidad más vivible.”</blockquote>
+    <p class="cyber">— @t‑regexr</p>
+    <p class="desc">Este código habla en nuestro idioma.<span class="flag-glow">&nbsp;🇨🇱</span></p>
+  </section>
 
-      <footer>HΔcKΛΛΣ7ΨΠg v.Φ.I • Lightning Talk</footer>
+  <section class="slide">
+    <h2>Gracias 🙏</h2>
+    <p>Preguntas, ideas o réplicas bienvenidas.</p>
+    <p>Contacto: <strong>@t‑regexr</strong></p>
+    <a class="neon-btn" href="https://github.com/t-regexr/mando-sql-poc" target="_blank">Ver repo</a>
+  </section>
+
+  <footer>HΔcKΛΛΣ7ΨΠg v.Φ.I • Lightning Talk</footer>
 
       <script>
         (() => {
