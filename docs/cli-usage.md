@@ -1,113 +1,135 @@
+✅ Versión actualizada de docs/cli-usage.md
+
 # 🧰 Guía CLI: uso por consola de `mando_insert_expander.py`
 
-Este script también se puede usar desde la terminal para expandir o ejecutar instrucciones SQL que contengan rangos de fechas usando la sintaxis `FROM 'fecha1' TO 'fecha2'`.
+Este script también se puede usar desde la terminal para expandir o ejecutar instrucciones SQL que contengan rangos de fechas con la sintaxis especial:
+
+```sql
+VALUES (..., FROM 'YYYY-MM-DD' TO 'YYYY-MM-DD');
+```
+
+✅ ¿Qué hace el CLI?
+
++ Expande automáticamente las fechas
++ Convierte rangos FROM ... TO ... en múltiples filas individuales.
++ Crea la tabla si no existe
++ Detecta nombres y columnas desde la query.
++ Deduce tipos (INT, VARCHAR, etc.) automáticamente.
++ Valida sintaxis y fechas
++ Avisa si TO es anterior a FROM.
++ Muestra errores si el formato es incorrecto.
++ Manejo de errores amigable
++ Reportes claros en caso de error SQL, conexión fallida o archivo faltante.
++ Soporte completo por argumentos
+
+Ejemplo de uso básico:
+
+```bash
+python mando_insert_expander.py query.sql --execute --user root --password tu_pass --database mando
+```
+
+Modo seguro (solo expansión, sin ejecución)
+
+```bash
+python mando_insert_expander.py query.sql
+```
+
+Variables de entorno
+    
+Puedes evitar poner la contraseña en la línea de comandos:
+
+```bash
+export DB_USER=root
+export DB_PASSWORD=tu_pass
+export DB_NAME=mando
+python mando_insert_expander.py query.sql --execute
+```
 
 ---
 
-## ✅ ¿Qué hace el CLI?
-
-1. **Valida la sintaxis y fechas**
-   - Detecta errores en el formato `FROM ... TO ...`
-   - Avisa si las fechas están mal puestas (por ejemplo, si `TO` es anterior a `FROM`)
-
-2. **Manejo de errores amigable**
-   - Si hay fallos de conexión, archivo inexistente o errores SQL, los muestra de forma clara y entendible.
-
-3. **Soporte para argumentos por consola**
-   - Puedes ejecutar el script así:
-
-     ```bash
-     python mando_insert_expander.py query.sql --execute --user root --password tu_pass --database mando
-     ```
-
-4. **Modo seguro: solo expansión**
-   - Si solo quieres ver la query expandida, sin ejecutarla:
-
-     ```bash
-     python mando_insert_expander.py query.sql
-     ```
-
-5. **Uso de variables de entorno**
-   - También puedes configurar la conexión con variables, para no pasar la contraseña en la línea:
-
-     ```bash
-     export DB_USER=root
-     export DB_PASSWORD=tu_pass
-     export DB_NAME=mando
-     python mando_insert_expander.py query.sql --execute
-     ```
-
----
-
-## 📄 Ejemplo de archivo `query.sql`
+📄 Ejemplo de archivo query.sql
 
 ```sql
 INSERT INTO dosage (medication_id, amount, date)
 VALUES (5, 3, FROM '2025-04-01' TO '2025-04-05');
 ```
 
+---
+
+🆕 También soporta múltiples columnas y tipos de datos. Por ejemplo:
+
+```sql
+INSERT INTO dosage (medication_id, amount, id_user, is_active, date)
+VALUES (5, 3, 10, true, FROM '2025-01-01' TO '2025-01-03');
+```
+
+---
+
 🔎 ¿Dónde usarlo?
 
-Este CLI es útil en contextos como:
+Ideal en contextos como:
 
-- Carga masiva de datos diarios en sistemas de salud, educación o IoT
-- Automatización desde scripts
-- Prototipos rápidos sin escribir loops SQL a mano
-
----
-
-## 🔐 Seguridad y flexibilidad en la conexión
-
-- Usar **variables de entorno** (`DB_USER`, `DB_PASSWORD`, `DB_NAME`, etc.) permite no exponer credenciales en la línea de comando, ideal para scripts automatizados o entornos compartidos.
-
-- Pasar credenciales vía **argumentos en consola** (`--user`, `--password`, `--database`) da flexibilidad para pruebas rápidas o conexión a múltiples bases sin cambiar el entorno.
-
-Así, el CLI se adapta a distintos usos y niveles de seguridad según tus necesidades.
++ Carga masiva de datos diarios en salud, educación o IoT
++ Automatización de pruebas de estrés
++ Scripts de integración o mantenimiento
++ Prototipos sin necesidad de ORMs o herramientas pesadas
 
 ---
 
-## ⚙️ Cómo crear variables de entorno
+🔐 Seguridad y flexibilidad en la conexión
 
-### En Linux / macOS (bash/zsh)
+Variables de entorno (DB_USER, DB_PASSWORD, DB_NAME)
++ Buenas para entornos seguros y scripts automatizados.
+
+Argumentos por línea de comandos
++ Útiles para pruebas rápidas o conexiones puntuales.
+
+---
+
+⚙️ Cómo crear variables de entorno
+
+En Linux / macOS (bash/zsh)
 
 ```bash
 export DB_USER=root
 export DB_PASSWORD=tu_pass
 export DB_NAME=mando
 ```
-Para que duren en todas las sesiones, agrega estas líneas a tu ~/.bashrc o ~/.zshrc.
 
-### En Windows PowerShell (temporal en la sesión actual)
+Para que sean permanentes, agrega esas líneas a ~/.bashrc o ~/.zshrc.
+
+En Windows PowerShell (temporal)
+
 ```powershell
 $env:DB_USER = "root"
 $env:DB_PASSWORD = "tu_pass"
 $env:DB_NAME = "mando"
 ```
-Para hacerlo permanente, usa:
+
+Permanente:
+
 ```powershell
 setx DB_USER "root"
 setx DB_PASSWORD "tu_pass"
 setx DB_NAME "mando"
 ```
-Luego cierra y abre la consola.
+En Windows CMD (temporal)
 
-### En Windows CMD (temporal en la sesión actual)
 ```cmd
 set DB_USER=root
 set DB_PASSWORD=tu_pass
 set DB_NAME=mando
 ```
-Para hacerlo permanente:
+
+Permanente:
+
 ```cmd
 setx DB_USER "root"
 setx DB_PASSWORD "tu_pass"
 setx DB_NAME "mando"
 ```
-luego cierra y abre la consola.
 
 ---
 
-Hecho con visión por [@t-regexr](https://github.com/t-regexr)  
-Parte de [mando-sql-poc](https://github.com/t-regexr/mando-sql-poc)
-
-
+Hecho con visión por @t-regexr
+Parte de mando-sql-poc
